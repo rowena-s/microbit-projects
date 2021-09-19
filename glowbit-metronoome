@@ -1,0 +1,82 @@
+input.onButtonPressed(Button.A, function () {
+    music.changeTempoBy(-5)
+})
+input.onPinPressed(TouchPin.P2, function () {
+    mode += 1
+    if (mode > 3) {
+        mode = 1
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    basic.showNumber(music.tempo())
+    basic.pause(100)
+    basic.showNumber(mode)
+})
+input.onButtonPressed(Button.B, function () {
+    music.changeTempoBy(5)
+})
+input.onPinPressed(TouchPin.P1, function () {
+    mode += -1
+    if (mode < 1) {
+        mode = 3
+    }
+})
+let mode = 0
+let strip = neopixel.create(DigitalPin.P0, 26, NeoPixelMode.RGB)
+let half1 = strip.range(0, 13)
+let half2 = strip.range(13, 13)
+let third1 = strip.range(0, 8)
+let third2 = strip.range(8, 9)
+let third3 = strip.range(17, 8)
+let quarter1 = strip.range(0, 6)
+let quarter2 = strip.range(6, 6)
+let quarter3 = strip.range(12, 7)
+let quarter4 = strip.range(19, 6)
+mode = 1
+music.setTempo(100)
+music.setVolume(150)
+basic.forever(function () {
+    if (mode == 1) {
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        half1.showRainbow(1, 180)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        half2.showRainbow(180, 360)
+        music.rest(music.beat(BeatFraction.Whole))
+        strip.clear()
+        strip.show()
+    } else if (mode == 2) {
+        music.setVolume(150)
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        third1.showRainbow(1, 120)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.setVolume(100)
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        third2.showRainbow(121, 240)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        third3.showRainbow(241, 360)
+        music.rest(music.beat(BeatFraction.Whole))
+        strip.clear()
+        strip.show()
+    } else if (mode == 3) {
+        music.setVolume(150)
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        quarter1.showRainbow(0, 90)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.setVolume(100)
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        quarter2.showRainbow(91, 180)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        quarter3.showRainbow(181, 270)
+        music.rest(music.beat(BeatFraction.Whole))
+        music.playTone(262, music.beat(BeatFraction.Sixteenth))
+        quarter4.showRainbow(271, 360)
+        music.rest(music.beat(BeatFraction.Whole))
+        strip.clear()
+        strip.show()
+    } else {
+    	
+    }
+})
