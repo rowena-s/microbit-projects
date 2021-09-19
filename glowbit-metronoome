@@ -21,6 +21,9 @@ input.onPinPressed(TouchPin.P1, function () {
         mode = 3
     }
 })
+input.onLogoEvent(TouchButtonEvent.Touched, function () {
+    mode = 0
+})
 let mode = 0
 let strip = neopixel.create(DigitalPin.P0, 26, NeoPixelMode.RGB)
 let half1 = strip.range(0, 13)
