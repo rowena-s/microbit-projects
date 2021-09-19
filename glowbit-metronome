@@ -10,7 +10,7 @@ input.onPinPressed(TouchPin.P2, function () {
 input.onButtonPressed(Button.AB, function () {
     basic.showNumber(music.tempo())
     basic.pause(100)
-    basic.showNumber(mode)
+    basic.clearScreen()
 })
 input.onButtonPressed(Button.B, function () {
     music.changeTempoBy(5)
@@ -40,6 +40,7 @@ music.setTempo(100)
 music.setVolume(150)
 basic.forever(function () {
     if (mode == 1) {
+        music.setVolume(100)
         music.playTone(262, music.beat(BeatFraction.Sixteenth))
         half1.showRainbow(1, 180)
         music.rest(music.beat(BeatFraction.Whole))
@@ -49,7 +50,7 @@ basic.forever(function () {
         strip.clear()
         strip.show()
     } else if (mode == 2) {
-        music.setVolume(150)
+        music.setVolume(175)
         music.playTone(262, music.beat(BeatFraction.Sixteenth))
         third1.showRainbow(1, 120)
         music.rest(music.beat(BeatFraction.Whole))
@@ -63,7 +64,7 @@ basic.forever(function () {
         strip.clear()
         strip.show()
     } else if (mode == 3) {
-        music.setVolume(150)
+        music.setVolume(175)
         music.playTone(262, music.beat(BeatFraction.Sixteenth))
         quarter1.showRainbow(0, 90)
         music.rest(music.beat(BeatFraction.Whole))
