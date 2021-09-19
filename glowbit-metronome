@@ -22,10 +22,17 @@ input.onPinPressed(TouchPin.P1, function () {
     }
 })
 input.onLogoEvent(TouchButtonEvent.Touched, function () {
-    mode = 0
+    if (mode > 0) {
+        prev_mode = mode
+        mode = 0
+    } else {
+        mode = prev_mode
+    }
 })
+let prev_mode = 0
 let mode = 0
 let strip = neopixel.create(DigitalPin.P0, 26, NeoPixelMode.RGB)
+strip.setBrightness(150)
 let half1 = strip.range(0, 13)
 let half2 = strip.range(13, 13)
 let third1 = strip.range(0, 8)
@@ -37,10 +44,9 @@ let quarter3 = strip.range(12, 7)
 let quarter4 = strip.range(19, 6)
 mode = 1
 music.setTempo(100)
-music.setVolume(150)
 basic.forever(function () {
     if (mode == 1) {
-        music.setVolume(100)
+        music.setVolume(150)
         music.playTone(262, music.beat(BeatFraction.Sixteenth))
         half1.showRainbow(1, 180)
         music.rest(music.beat(BeatFraction.Whole))
